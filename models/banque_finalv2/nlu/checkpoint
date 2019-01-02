@@ -1,0 +1,2 @@
+model_checkpoint_path: "C:\\Users\\FR019136\\Documents\\SmartAutomation\\starter-pack-rasa-stack-master\\models\\banque_finalv2\\nlu\\intent_classifier_tensorflow_embedding.ckpt"
+all_model_checkpoint_paths: "C:\\Users\\FR019136\\Documents\\SmartAutomation\\starter-pack-rasa-stack-master\\models\\banque_finalv2\\nlu\\intent_classifier_tensorflow_embedding.ckpt"
