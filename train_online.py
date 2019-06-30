@@ -15,25 +15,24 @@ from rasa_core.utils import EndpointConfig
 logger = logging.getLogger(__name__)
 
 
-def run_weather_online(interpreter,
-                          domain_file="domain_banque_final.yml",
-                          training_data_file='data/stories_banque_final.md'):
-    action_endpoint = EndpointConfig(url="http://localhost:5055/webhook")						  
+def run_online(interpreter,
+                          domain_file="domain_banque_finalv2.yml",
+                          training_data_file='data/stories_banque_finalv2.md'):
+    action_endpoint = EndpointConfig(url="http://localhost:5055/webhook") 
     agent = Agent(domain_file,
                   policies=[MemoizationPolicy(max_history=2), KerasPolicy()],
                   interpreter=interpreter,
 				  action_endpoint=action_endpoint)
-    				  
     data = agent.load_data(training_data_file)
     agent.train(data,
                        batch_size=50,
                        epochs=200,
-                       max_training_samples=300)				   
+                       max_training_samples=300)
     online.serve_agent(agent)
     return agent
 
 
 if __name__ == '__main__':
     logging.basicConfig(level="INFO")
-    nlu_interpreter = RasaNLUInterpreter('./models/banque_final/nlu/')
-    run_weather_online(nlu_interpreter)
+    nlu_interpreter = RasaNLUInterpreter('./models/v4/nlu/')
+    run_online(nlu_interpreter)

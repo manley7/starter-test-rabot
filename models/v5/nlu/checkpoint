@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/s_belhouchat/v3/models/v5/nlu/intent_classifier_tensorflow_embedding.ckpt"
+all_model_checkpoint_paths: "/home/s_belhouchat/v3/models/v5/nlu/intent_classifier_tensorflow_embedding.ckpt"

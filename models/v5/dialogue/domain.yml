@@ -1,0 +1,223 @@
+%YAML 1.1
+---
+actions:
+- utter_negation
+- utter_rep_salutation
+- utter_ask_opposition
+- utter_ask_prix
+- utter_ask_type_achat
+- utter_rep_merci
+- utter_rep_opposition
+- utter_rep_opposition_cb
+- utter_rep_final
+- utter_rep_need
+- utter_rep_confirmation_credit
+- utter_ask_montant_virement
+- utter_ask_beneficiare_montant
+- utter_ask_montant_beneficiaire
+- utter_ask_montant_beneficiaire_unit
+- utter_ask_beneficiare
+- utter_rep_virement
+- utter_rep_virement_unit
+- utter_rep_confirmation_virement
+- utter_rep_confirmation_virement_unit
+- utter_rep_solde
+- utter_aurevoir
+- utter_default
+- utter_robot
+- utter_rib
+- action_rep_solde
+- action_virement
+- action_send_email
+- action_opposition
+- utter_ask_yes_no
+- action_audit
+- utter_rep_virement_annule
+- action_nlg
+config:
+  store_entities_as_slots: true
+entities:
+- CB
+- UNIT
+- PRIX
+- DESTINATAIRE
+- LOCATION
+- SOLDE
+- MOTIF
+- EMAIL
+- rib
+forms: []
+intents:
+- Perte_de_carte_bancaire:
+    use_entities: true
+- opposition:
+    use_entities: true
+- affirmation:
+    use_entities: true
+- negation:
+    use_entities: true
+- salutation:
+    use_entities: true
+- demande_de_virement:
+    use_entities: true
+- merci:
+    use_entities: true
+- aurevoir:
+    use_entities: true
+- solde:
+    use_entities: true
+- None:
+    use_entities: true
+- email:
+    use_entities: true
+- envoi_rib:
+    use_entities: true
+- robot:
+    use_entities: true
+slots:
+  CB:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  CONFIRMATION_VIREMENT:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  DESTINATAIRE:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  EMAIL:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  MOTIF:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  PRIX:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  SOLDE:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  TYPE-ACHAT:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  UNIT:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_ask_beneficiare:
+  - text: Pour quel bénéficiaire souhaitez vous faire le virement ?
+  - text: A qui souhaitez vous envoyer l'argent ?
+  utter_ask_beneficiare_montant:
+  - text: Combien souhaitez-vous envoyer à {DESTINATAIRE} ?
+  - text: Quel est le montant du virement à destination de {DESTINATAIRE} ?
+  utter_ask_montant_beneficiaire:
+  - text: A qui souhaitez-vous envoyer les {PRIX}
+  - text: Le montant de {PRIX} que vous souhaitez envoyer est à destination de quel
+      bénéficiaire ?
+  utter_ask_montant_beneficiaire_unit:
+  - text: A qui souhaitez-vous envoyer les {PRIX} {UNIT}
+  - text: Le montant de {PRIX} {UNIT} que vous souhaitez envoyer est à destination
+      de quel bénéficiaire ?
+  utter_ask_montant_virement:
+  - text: Quel montant souhaitez vous envoyer ?
+  - text: Pouvez-vous me préciser la somme que vous souhaitez envoyer ?
+  - text: Une demande de virement ? indiquez moi le montant que vous souhaitez envoyer
+  utter_ask_motif:
+  - text: Quel le motif de votre virement à {DESTINATAIRE} ?
+  - text: Quel motif souhaitez-vous associer à ce virement de {PRIX} {UNIT} ?
+  utter_ask_opposition:
+  - text: Voulez vous faire opposition ?
+  - text: Souhaitez vous faire opposition ?
+  - text: Dois-je faire opposition ?
+  utter_ask_prix:
+  - text: Quelle est la somme que vous souhaitez emprunter ?
+  - text: Combien souhaitez vous emprunter ?
+  - text: Pouvez-vous me preciser la somme dont vous avez besoin ?
+  utter_ask_type_achat:
+  - text: Quel projet avez-vous besoin de financer ?
+  - text: Pour quel objet avez-vous besoin d'un financement de ma part ?
+  - text: Quel bien voulez-vous acheter ?
+  utter_ask_yes_no:
+  - buttons:
+    - payload: /mood_affirm
+      title: Oui
+    - payload: /mood_deny
+      title: Non
+    text: Voulez vous débloquer votre moyen de paiement
+  utter_aurevoir:
+  - text: A très vite
+  - text: Au revoir et merci
+  - text: Au revoir
+  utter_confir_vir:
+  - text: CONFIRMATION_VIREMENT
+  utter_default:
+  - text: Je ne comprends pas votre demande
+  - text: Pouvez-vous reformuler ?
+  - text: J'ai du mal à vous comprendre
+  - text: J'apprends encore, pouvez-vous reformuler ?
+  utter_negation:
+  - text: Ok
+  - text: Très bien
+  - text: C'est noté
+  utter_rep_confirmation_credit:
+  - text: Votre demander viens d'être accepter, vous venez d'être crédité de {PRIX}
+      {UNIT}.
+  - text: Je viens de débloquer les fonds, ils sont immédiatement disponible sur votre
+      compte
+  utter_rep_confirmation_virement:
+  - text: Je vous confirme le virement de {PRIX} à {DESTINATAIRE}
+  utter_rep_confirmation_virement_unit:
+  - text: Je vous confirme le virement de {PRIX} {UNIT} à {DESTINATAIRE}
+  utter_rep_dontknow:
+  - text: Je ne suis pas en mesure de vous aider, je prends le point et le transmet
+      à mon collegue. Il vous recontactera très prochainement.
+  - text: Je viens de transmettre votre requête à mon collegue, il prendra contact
+      avec vous
+  utter_rep_final:
+  - text: Desirez vous autre chose ?
+  - text: Avez-vous besoin d'autre chose ?
+  - text: Avez-vous une autre demande à formuler ?
+  utter_rep_merci:
+  - text: C'est un plaisir de vous aider
+  - text: Je suis heureux d'avoir pu vous être utile
+  - text: C'est toujours un plaisir de vous aider
+  - text: Mais de rien monsieur
+  utter_rep_need:
+  - text: Comment puis-je vous aider ?
+  - text: Que puis-je faire pour vous ?
+  - text: En quoi puis-je vous être utile ?
+  utter_rep_opposition:
+  - text: Ok, je fait opposition
+  - text: Je viens de faire opposition
+  utter_rep_opposition_cb:
+  - text: Ok, je fait opposition sur votre {CB}
+  - text: Je viens de faire opposition pour votre {CB}
+  utter_rep_salutation:
+  - text: Bonjour
+  - text: Bonjour à vous
+  - text: Bonjour monsieur
+  utter_rep_solde:
+  - text: Votre solde est de {SOLDE}
+  utter_rep_virement:
+  - text: Souhaitez-vous envoyer {PRIX} à {DESTINATAIRE} ?
+  - text: Confirmez-vous un virement de {PRIX} à {DESTINATAIRE} ?
+  utter_rep_virement_annule:
+  - text: Le virement n'a pas abouti
+  - text: J'annule l'opération
+  utter_rep_virement_unit:
+  - text: Souhaitez-vous envoyer {PRIX} {UNIT} à {DESTINATAIRE} ?
+  - text: Confirmez-vous un virement de {PRIX} {UNIT} à {DESTINATAIRE} ?
+  utter_rib:
+  - text: Je vous l'envoie quel est votre adresse email ?
+  - text: Bien sur, quel est votre adresse email ?
+  utter_robot:
+  - text: Je suis Johnny ton conseiller bancaire
+  - text: Johnny, ton conseiller bancaire

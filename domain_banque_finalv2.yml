@@ -1,6 +1,6 @@
 slots:
   PRIX:
-    type: float
+    type: text
   UNIT:
     type: text
   TYPE-ACHAT:
@@ -15,6 +15,8 @@ slots:
     type: text
   MOTIF:
     type: text
+  EMAIL:
+    type: text
 
 intents:
  - demande_de_credit
@@ -28,6 +30,9 @@ intents:
  - aurevoir
  - solde
  - None
+ - email
+ - envoi_rib
+ - robot
 
 entities:
  - TYPE-ACHAT
@@ -39,6 +44,8 @@ entities:
  - ARGENT
  - SOLDE
  - MOTIF
+ - EMAIL
+ - rib
 
 templates:
   utter_rep_salutation:
@@ -135,9 +142,20 @@ templates:
     - "Je ne comprends pas votre demande"
     - "Pouvez-vous reformuler ?"
     - "J'ai du mal à vous comprendre"
+  utter_robot:
+    - "Je suis Johnny ton conseiller bancaire"
+    - "Johnny, ton conseiller bancaire" 
+  utter_rib:
+    - "Je vous l'envoie quel est votre adresse email ?"
+    - "Bien sur, quel est votre adresse email ?"
+  utter_negation:
+    - "Ok"
+    - "Très bien"
+    - "C'est noté"
+  
 
-    
 actions:
+ - utter_negation
  - utter_rep_salutation
  - utter_ask_opposition
  - utter_ask_prix
@@ -164,5 +182,8 @@ actions:
  - utter_rep_solde
  - utter_aurevoir
  - utter_default
+ - utter_robot
+ - utter_rib
  - action_rep_solde
  - action_transfert
+ - action_send_email
